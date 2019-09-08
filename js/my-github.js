@@ -11,6 +11,8 @@ function fetchAndShowGithubContent() {
       return res.json();
     })
     .then(reposarr => {
+      let changeRepoList = document.querySelector("#repos-count");
+      changeRepoList.innerText = reposarr.length;
       reposarr.forEach(repo => {
         // create a link inside of an li and add the li to the list.
         let newLi = document.createElement("li");
