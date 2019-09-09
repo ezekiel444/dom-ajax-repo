@@ -17,8 +17,8 @@ function pullRequestContent() {
     });
 }
 // pullRequestContent();
-
-// Alternative Solution Using Object Destruction And Async await.
+/* Requirement 5: Show Only My Pull Requests.
+Alternative Solution Using Object Destruction And Async await.*/
 async function pullRequestContent2() {
   let pullRequestList = document.querySelector("#pull-requests-list");
 
@@ -38,5 +38,27 @@ async function pullRequestContent2() {
     }
   });
 }
+//pullRequestContent2();
 
-pullRequestContent2();
+//Requirement 6: Search for my friend's Pull Requests.
+async function functionToSearch() {
+  const toFetch = await fetch(
+      "https://api.github.com/repos/codeyourfuture/js-exercises/pulls"
+    ),
+    dataReceived = await toFetch.json();
+
+  let pullRequestList = document.querySelector("#pull-requests-list");
+  dataReceived.filter(({ user, html_url, title, number }) => {
+    let searchedUsers = document.querySelector("#searchid");
+    if (searchedUsers.value === user.login) {
+      let li = document.createElement("li"),
+        createLink = document.createElement("a");
+      createLink.setAttribute("href", html_url);
+      createLink.innerText = `#${number} - ${title}`;
+      li.appendChild(createLink);
+      pullRequestList.appendChild(li);
+    }
+  });
+}
+
+functionToSearch();
