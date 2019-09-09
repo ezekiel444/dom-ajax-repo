@@ -16,7 +16,7 @@ function pullRequestContent() {
       });
     });
 }
-// pullRequestContent();
+//pullRequestContent();
 /* Requirement 5: Show Only My Pull Requests.
 Alternative Solution Using Object Destruction And Async await.*/
 async function pullRequestContent2() {
@@ -38,7 +38,7 @@ async function pullRequestContent2() {
     }
   });
 }
-//pullRequestContent2();
+pullRequestContent2();
 
 //Requirement 6: Search for my friend's Pull Requests.
 async function functionToSearch() {
