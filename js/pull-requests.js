@@ -27,13 +27,15 @@ async function pullRequestContent2() {
     ),
     resArr = await res.json();
 
-  resArr.forEach(({ html_url, title }) => {
-    let li = document.createElement("li"),
-      createLink = document.createElement("a");
-    createLink.setAttribute("href", html_url);
-    createLink.innerText = title;
-    li.appendChild(createLink);
-    pullRequestList.appendChild(li);
+  resArr.filter(({ html_url, title, number, user }) => {
+    if (user.login === "minotad66") {
+      let li = document.createElement("li"),
+        createLink = document.createElement("a");
+      createLink.setAttribute("href", html_url);
+      createLink.innerText = `#${number} - ${title}`;
+      li.appendChild(createLink);
+      pullRequestList.appendChild(li);
+    }
   });
 }
 
