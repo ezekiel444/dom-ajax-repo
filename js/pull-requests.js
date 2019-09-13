@@ -46,7 +46,7 @@ async function functionToSearch() {
       "https://api.github.com/repos/codeyourfuture/js-exercises/pulls"
     ),
     dataReceived = await toFetch.json();
-
+  console.log(dataReceived.type);
   let pullRequestList = document.querySelector("#pull-requests-list");
   dataReceived.filter(({ user, html_url, title, number }) => {
     let searchedUsers = document.querySelector("#searchid");
