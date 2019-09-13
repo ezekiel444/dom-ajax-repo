@@ -8,16 +8,18 @@ fetchUsers = async username => {
     "https://api.github.com/users/" + username + "/repos"
   );
   let data = await responds.json();
+  while (reposList.hasChildNodes()) {
+    reposList.removeChild(reposList.lastChild);
+  }
   /// here you should clean all the LI inside the UL
+
   data.forEach(({ name, html_url }) => {
     // create a link inside of an li and add the li to the list.
     let newLi = document.createElement("li"); //
     let createLink = document.createElement("a"); //
     createLink.setAttribute("href", html_url); //
     createLink.innerText = name; //       create a function for those lines and call it here
-    while (newLi.hasChildNodes()) {
-      newLi.removeChild(ul.lastChild);
-    }
+    document.querySelector("#repos-count").innerHTML = data.length;
     newLi.appendChild(createLink); //
     reposList.appendChild(newLi); //
   });
